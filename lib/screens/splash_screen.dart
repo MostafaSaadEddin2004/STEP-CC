@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen>
       ..reset()
       ..forward();
     await Future.delayed(const Duration(seconds: 4), () {
-      Get.to(FirstIntroScreen,curve: Curves.easeIn);
+      Get.to(const FirstIntroScreen(), transition: Transition.fade);
     });
   }
 
