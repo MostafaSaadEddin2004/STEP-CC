@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:step_cc/components/background_container.dart';
-import 'package:step_cc/screens/intro/first_screen.dart';
+import 'package:step_cc/screens/intro/intro_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 3));
+        AnimationController(vsync: this, duration: const Duration(seconds: 2));
     animation =
         Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
   }
@@ -34,8 +34,10 @@ class _SplashScreenState extends State<SplashScreen>
     animationController
       ..reset()
       ..forward();
-    await Future.delayed(const Duration(seconds: 4), () {
-      Get.to(const FirstIntroScreen(), transition: Transition.fade);
+    await Future.delayed(const Duration(seconds: 2), () {
+      Get.off(() => const IntroPage(),
+          transition: Transition.cupertino,
+          duration: const Duration(seconds: 2));
     });
   }
 
