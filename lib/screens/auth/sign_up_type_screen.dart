@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:step_cc/components/background_container.dart';
+import 'package:step_cc/components/buttons/back_button.dart';
 
 class SignUpTypeScreen extends StatefulWidget {
   const SignUpTypeScreen({super.key});
@@ -12,7 +15,42 @@ class _SignUpTypeScreenState extends State<SignUpTypeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BackgroundContainer(child: SafeArea(child: Column())),
+      body: BackgroundContainer(
+          child: SafeArea(
+              child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            children: [
+              CustomBackButton(
+                onTap: () {
+                  Get.back();
+                },
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 24,
+          ),
+          Image.asset('assets/images/logo.png'),
+          const SizedBox(
+            height: 32,
+          ),
+          Text('Sign up type',style: Theme.of(context).textTheme.labelLarge,),
+          GestureDetector(
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 64, vertical: 48),
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondary,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Text('Vip'),
+            ),
+          )
+        ],
+      ))),
     );
   }
 }

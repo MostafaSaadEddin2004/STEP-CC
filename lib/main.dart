@@ -26,6 +26,7 @@ class Main extends StatelessWidget {
         Locale('en'), // English
         Locale('ar'), // Spanish
       ],
+      locale: const Locale('en'),
       theme: AppTheme.lightTheme(context),
       darkTheme: AppTheme.darkTheme(context),
       themeMode: ThemeMode.dark,

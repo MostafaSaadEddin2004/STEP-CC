@@ -3,6 +3,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:step_cc/components/background_container.dart';
+import 'package:step_cc/components/buttons/next_button.dart';
 import 'package:step_cc/models/intro_data_model.dart';
 import 'package:step_cc/screens/auth/sign_up_type_screen.dart';
 import 'package:step_cc/screens/intro/intro_content.dart';
@@ -61,7 +62,7 @@ class _IntroPageState extends State<IntroPage> {
           },
         ),
         Container(
-          margin: const EdgeInsets.only(bottom: 64),
+          margin: const EdgeInsets.only(bottom: 48),
           alignment: Alignment.bottomCenter,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -73,40 +74,40 @@ class _IntroPageState extends State<IntroPage> {
                       dotColor: Theme.of(context).colorScheme.onSurface),
                   controller: _pageViewConterol,
                   count: introData.length),
-              GestureDetector(
-                onTap: () {
+              NextButton(
+                onPressed: () {
                   if (lastIndex) {
                     Get.to(() => const SignUpTypeScreen(),
                         duration: const Duration(seconds: 2),
-                        transition: Transition.rightToLeft);
+                        transition: Transition.circularReveal);
                   } else {
                     _pageViewConterol.nextPage(
                         duration: const Duration(seconds: 1),
                         curve: Curves.decelerate);
                   }
                 },
-                child: Icon(
-                  size: 50,
-                  Icons.arrow_circle_right,
-                  color: Theme.of(context).colorScheme.secondary,
-                ),
               )
             ],
           ),
         ),
-        lastIndex==false?  Positioned(
-          right: 16,
-          top: 16,
-          child: GestureDetector(
-              onTap: () {
-                _pageViewConterol.animateToPage(3,
-                    duration: const Duration(seconds: 2),
-                    curve: Curves.decelerate);
-              },
-              child: const Row(
-                children: [Text('Skip'), Icon(Icons.arrow_right_outlined)],
-              )),
-        ):const SizedBox()
+        lastIndex == false
+            ? Positioned(
+                right: 16,
+                top: 16,
+                child: GestureDetector(
+                    onTap: () {
+                      _pageViewConterol.animateToPage(3,
+                          duration: const Duration(seconds: 2),
+                          curve: Curves.decelerate);
+                    },
+                    child: const Row(
+                      children: [
+                        Text('Skip'),
+                        Icon(Icons.arrow_right_outlined)
+                      ],
+                    )),
+              )
+            : const SizedBox()
       ]))),
     );
   }
