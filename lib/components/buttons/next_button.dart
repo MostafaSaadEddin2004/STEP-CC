@@ -13,7 +13,7 @@ class NextButton extends StatelessWidget {
       onPressed: onPressed,
       icon: Icon(
         size: 50,
-        Icons.arrow_circle_right,
+        Icons.arrow_circle_right_rounded,
         color: Theme.of(context).colorScheme.secondary,
       ),
     );

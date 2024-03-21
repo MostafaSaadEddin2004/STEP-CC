@@ -16,7 +16,7 @@ abstract class AppTheme {
               brightness: Brightness.dark,
               primary: black,
               onPrimary: darkBlue,
-              secondary: black,
+              secondary: white,
               onSecondary: blue,
               error: red,
               onError: red,

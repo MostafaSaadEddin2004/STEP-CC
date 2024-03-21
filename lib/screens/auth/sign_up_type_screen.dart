@@ -3,6 +3,7 @@ import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:step_cc/components/background_container.dart';
 import 'package:step_cc/components/buttons/back_button.dart';
+import 'package:step_cc/components/buttons/sign_up_type_button.dart';
 
 class SignUpTypeScreen extends StatefulWidget {
   const SignUpTypeScreen({super.key});
@@ -12,6 +13,8 @@ class SignUpTypeScreen extends StatefulWidget {
 }
 
 class _SignUpTypeScreenState extends State<SignUpTypeScreen> {
+  bool isVIP = true;
+  bool isNotVIP = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,22 +39,30 @@ class _SignUpTypeScreenState extends State<SignUpTypeScreen> {
           const SizedBox(
             height: 32,
           ),
-          Text('Sign up type',style: Theme.of(context).textTheme.titleLarge,),
-          GestureDetector(
-            child: Container(
-              alignment: Alignment.centerLeft,
-              margin: const EdgeInsets.symmetric(horizontal: 48, vertical: 48),
-              padding: const EdgeInsets.all(8),
-              height: 50,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Text(' Vip content creator',
-              style: Theme.of(context).textTheme.labelSmall,),
-            ),
-          )
+          Text(
+            'Sign up type',
+            style: Theme.of(context).textTheme.labelLarge,
+          ),
+          SignUpTypeButton(
+            onTap: () {
+              setState(() {
+                isVIP = true;
+                isNotVIP = false;
+              });
+            },
+            isVIP: isVIP,
+            text: 'VIP Content Creator',
+          ),
+          SignUpTypeButton(
+            onTap: () {
+              setState(() {
+                isVIP = false;
+                isNotVIP = true;
+              });
+            },
+            isVIP: isNotVIP,
+            text: 'Content Creator',
+          ),
         ],
       ))),
     );
