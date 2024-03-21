@@ -36,17 +36,20 @@ class _SignUpTypeScreenState extends State<SignUpTypeScreen> {
           const SizedBox(
             height: 32,
           ),
-          Text('Sign up type',style: Theme.of(context).textTheme.labelLarge,),
+          Text('Sign up type',style: Theme.of(context).textTheme.titleLarge,),
           GestureDetector(
             child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 64, vertical: 48),
+              alignment: Alignment.centerLeft,
+              margin: const EdgeInsets.symmetric(horizontal: 48, vertical: 48),
+              padding: const EdgeInsets.all(8),
               height: 50,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: Text('Vip'),
+              child: Text(' Vip content creator',
+              style: Theme.of(context).textTheme.labelSmall,),
             ),
           )
         ],

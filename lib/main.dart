@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:step_cc/bloc/localization_cubit/localization_cubit.dart';
+import 'package:step_cc/bloc/theme_cubit/theme_cubit.dart';
+import 'package:step_cc/models/bloc_observer.dart';
 import 'package:step_cc/screens/splash_screen.dart';
 import 'package:step_cc/theme/app_theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const Main());
+  Bloc.observer = MyBlocObserver();
 }
 
 class Main extends StatelessWidget {
@@ -14,24 +19,38 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ThemeCubit(),
+        ),
+        // BlocProvider(
+        //   create: (context) => LocalizationCubit(),
+        // ),
       ],
-      supportedLocales: const [
-        Locale('en'), // English
-        Locale('ar'), // Spanish
-      ],
-      locale: const Locale('en'),
-      theme: AppTheme.lightTheme(context),
-      darkTheme: AppTheme.darkTheme(context),
-      themeMode: ThemeMode.dark,
-      home: const SplashScreen(),
-    
+      child: BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
+        if (state is ThemeFetched) {
+          return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('en'), // English
+              Locale('ar'), // Spanish
+            ],
+            locale: Locale('en'),
+            theme: AppTheme.lightTheme(context),
+            darkTheme: AppTheme.darkTheme(context),
+            themeMode: state.themeMode,
+            home: const SplashScreen(),
+          );
+        }
+        return const SizedBox();
+      }),
     );
   }
 }

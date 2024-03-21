@@ -19,7 +19,6 @@ class IntroContent extends StatelessWidget {
             children: [
               Text(
                 data.title,
-                textAlign: TextAlign.left,
               ),
             ],
           ),
