@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:step_cc/bloc/localization_cubit/localization_cubit.dart';
 import 'package:step_cc/bloc/theme_cubit/theme_cubit.dart';
 import 'package:step_cc/models/bloc_observer.dart';
 import 'package:step_cc/screens/splash_screen.dart';
@@ -23,33 +24,42 @@ class Main extends StatelessWidget {
         BlocProvider(
           create: (context) => ThemeCubit(),
         ),
-        // BlocProvider(
-        //   create: (context) => LocalizationCubit(),
-        // ),
+        BlocProvider(
+          create: (context) => LocalizationCubit(),
+        ),
       ],
-      child: BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
-        if (state is ThemeFetched) {
-          return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: const [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: const [
-              Locale('en'), // English
-              Locale('ar'), // Spanish
-            ],
-            locale: Locale('en'),
-            theme: AppTheme.lightTheme(context),
-            darkTheme: AppTheme.darkTheme(context),
-            themeMode: state.themeMode,
-            home: const SplashScreen(),
-          );
-        }
-        return const SizedBox();
-      }),
+      child: BlocBuilder(
+          bloc: ThemeCubit(),
+          builder: (context, themeState) {
+            return BlocBuilder(
+              bloc: LocalizationCubit(),
+              builder: (context, localeState) {
+                if (themeState is ThemeFetched) {
+                  if (localeState is LocalizationFetched) {
+                    return GetMaterialApp(
+                      debugShowCheckedModeBanner: false,
+                      localizationsDelegates: const [
+                        AppLocalizations.delegate,
+                        GlobalMaterialLocalizations.delegate,
+                        GlobalWidgetsLocalizations.delegate,
+                        GlobalCupertinoLocalizations.delegate,
+                      ],
+                      supportedLocales: const [
+                        Locale('en'), // English
+                        Locale('ar'), // Spanish
+                      ],
+                      locale: localeState.locale,
+                      theme: AppTheme.lightTheme(context),
+                      darkTheme: AppTheme.darkTheme(context),
+                      themeMode: themeState.themeMode,
+                      home: const SplashScreen(),
+                    );
+                  }
+                }
+                return const SizedBox();
+              },
+            );
+          }),
     );
   }
 }

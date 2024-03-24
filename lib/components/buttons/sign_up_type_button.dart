@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:step_cc/utilities/check_locale.dart';
 
 class SignUpTypeButton extends StatelessWidget {
   const SignUpTypeButton({
@@ -18,9 +19,9 @@ class SignUpTypeButton extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(seconds: 1),
         curve: Curves.easeInBack,
-        alignment: Alignment.centerLeft,
-        margin: const EdgeInsets.symmetric(horizontal: 48, vertical: 48),
-        padding: const EdgeInsets.all(8),
+        alignment: Direction.isLTR(context)? Alignment.centerLeft:Alignment.centerRight,
+        margin: const EdgeInsets.only(left: 48, top: 48,right: 48),
+        padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 8),
         height: 50,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(

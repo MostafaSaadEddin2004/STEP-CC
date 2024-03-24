@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:step_cc/utilities/check_locale.dart';
 
 class CustomBackButton extends StatelessWidget {
   const CustomBackButton({
@@ -9,21 +10,24 @@ class CustomBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        margin: const EdgeInsets.all(16),
+    return Container(
+        margin: Direction.isLTR(context)? const EdgeInsets.only(left: 16, top: 16):const EdgeInsets.only(right: 16, top: 16),
+        alignment: Alignment.center,
         height: 24,
         width: 24,
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.secondary,
             borderRadius: BorderRadius.circular(4)),
-        child: Icon(
-          Localizations.localeOf(context).languageCode == 'en' ?
-          Icons.keyboard_arrow_left_rounded: Icons.keyboard_arrow_right_rounded,
-          color: Theme.of(context).colorScheme.primary,
-        ),
-      ),
-    );
+        child: IconButton(
+          iconSize: 24,
+          padding: const EdgeInsets.all(0),
+          onPressed: onTap,
+          icon: Icon(
+            Direction.isLTR(context)
+                ? Icons.keyboard_arrow_left_rounded
+                : Icons.keyboard_arrow_right_rounded,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        ));
   }
 }

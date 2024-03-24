@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -7,6 +8,7 @@ import 'package:step_cc/components/buttons/next_button.dart';
 import 'package:step_cc/models/intro_data_model.dart';
 import 'package:step_cc/screens/auth/sign_up_type_screen.dart';
 import 'package:step_cc/screens/intro/intro_content.dart';
+import 'package:step_cc/utilities/check_locale.dart';
 
 class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
@@ -61,19 +63,27 @@ class _IntroPageState extends State<IntroPage> {
             return Center(child: IntroContent(data: data));
           },
         ),
-        Container(
-          margin: const EdgeInsets.only(bottom: 48),
-          alignment: Alignment.bottomCenter,
+        Positioned(
+          bottom: 0,
+          right: 0,
+          left: 0,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SmoothPageIndicator(
-                  effect: ExpandingDotsEffect(
-                      expansionFactor: 2.0,
-                      activeDotColor: Theme.of(context).colorScheme.onSecondary,
-                      dotColor: Theme.of(context).colorScheme.onSurface),
-                  controller: _pageViewConterol,
-                  count: introData.length),
+              Padding(
+                padding: Direction.isLTR(context)
+                    ? const EdgeInsets.only(bottom: 48, left: 72)
+                    : const EdgeInsets.only(bottom: 48, right: 72),
+                child: SmoothPageIndicator(
+                    effect: ExpandingDotsEffect(
+                        expansionFactor: 2.0,
+                        activeDotColor:
+                            Theme.of(context).colorScheme.onSecondary,
+                        dotColor: Theme.of(context).colorScheme.onSurface),
+                    controller: _pageViewConterol,
+                    count: introData.length),
+              ),
+              const Spacer(),
               NextButton(
                 onPressed: () {
                   if (lastIndex) {

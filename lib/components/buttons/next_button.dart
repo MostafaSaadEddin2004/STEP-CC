@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:step_cc/utilities/check_locale.dart';
 
 class NextButton extends StatelessWidget {
   const NextButton({
@@ -9,12 +10,19 @@ class NextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: onPressed,
-      icon: Icon(
-        size: 50,
-        Icons.arrow_circle_right_rounded,
-        color: Theme.of(context).colorScheme.secondary,
+    return Container(
+      padding: Direction.isLTR(context)
+          ? const EdgeInsets.only(right: 48, bottom: 48)
+          : const EdgeInsets.only(left: 48, bottom: 48),
+      child: IconButton(
+        onPressed: onPressed,
+        icon: Icon(
+          size: 50,
+          Direction.isLTR(context)
+              ? Icons.arrow_circle_right_rounded
+              : Icons.arrow_circle_left_rounded,
+          color: Theme.of(context).colorScheme.secondary,
+        ),
       ),
     );
   }

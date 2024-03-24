@@ -3,6 +3,7 @@ import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:step_cc/components/background_container.dart';
 import 'package:step_cc/components/buttons/back_button.dart';
+import 'package:step_cc/components/buttons/next_button.dart';
 import 'package:step_cc/components/buttons/sign_up_type_button.dart';
 
 class SignUpTypeScreen extends StatefulWidget {
@@ -62,6 +63,17 @@ class _SignUpTypeScreenState extends State<SignUpTypeScreen> {
             },
             isVIP: isNotVIP,
             text: 'Content Creator',
+          ),
+          const Spacer(
+            flex: 1,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              NextButton(
+                onPressed: () {},
+              ),
+            ],
           ),
         ],
       ))),
