@@ -5,10 +5,11 @@ import 'package:step_cc/components/background_container.dart';
 import 'package:step_cc/components/buttons/back_button.dart';
 import 'package:step_cc/components/buttons/next_button.dart';
 import 'package:step_cc/components/buttons/sign_up_type_button.dart';
+import 'package:step_cc/screens/auth/vip_cc_signup_screen.dart';
 
 class SignUpTypeScreen extends StatefulWidget {
   const SignUpTypeScreen({super.key});
-
+  static const String id = '/SignUpTypeScreen';
   @override
   State<SignUpTypeScreen> createState() => _SignUpTypeScreenState();
 }
@@ -67,13 +68,12 @@ class _SignUpTypeScreenState extends State<SignUpTypeScreen> {
           const Spacer(
             flex: 1,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              NextButton(
-                onPressed: () {},
-              ),
-            ],
+          NextButton(
+            onPressed: () {
+              if(isVIP){
+                Get.off(()=> const VIPCCSignUpScreen(),);
+              }
+            },
           ),
         ],
       ))),

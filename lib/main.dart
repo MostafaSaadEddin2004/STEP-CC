@@ -5,6 +5,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:step_cc/bloc/localization_cubit/localization_cubit.dart';
 import 'package:step_cc/bloc/theme_cubit/theme_cubit.dart';
 import 'package:step_cc/models/bloc_observer.dart';
+import 'package:step_cc/models/route_model.dart';
 import 'package:step_cc/screens/splash_screen.dart';
 import 'package:step_cc/theme/app_theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,7 +53,8 @@ class Main extends StatelessWidget {
                       theme: AppTheme.lightTheme(context),
                       darkTheme: AppTheme.darkTheme(context),
                       themeMode: themeState.themeMode,
-                      home: const SplashScreen(),
+                      initialRoute: SplashScreen.id,
+                      onGenerateRoute: AppRoute.onGenerateRoute,
                     );
                   }
                 }

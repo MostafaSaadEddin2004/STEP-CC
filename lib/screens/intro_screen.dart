@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -7,17 +6,17 @@ import 'package:step_cc/components/background_container.dart';
 import 'package:step_cc/components/buttons/next_button.dart';
 import 'package:step_cc/models/intro_data_model.dart';
 import 'package:step_cc/screens/auth/sign_up_type_screen.dart';
-import 'package:step_cc/screens/intro/intro_content.dart';
+import 'package:step_cc/components/intro_content.dart';
 import 'package:step_cc/utilities/check_locale.dart';
 
-class IntroPage extends StatefulWidget {
-  const IntroPage({super.key});
-
+class IntroScreen extends StatefulWidget {
+  const IntroScreen({super.key});
+  static const String id= '/IntroScreen';
   @override
-  State<IntroPage> createState() => _IntroPageState();
+  State<IntroScreen> createState() => _IntroScreenState();
 }
 
-class _IntroPageState extends State<IntroPage> {
+class _IntroScreenState extends State<IntroScreen> {
   final _pageViewConterol = PageController();
   final List<IntroDataModel> introData = [
     IntroDataModel(
