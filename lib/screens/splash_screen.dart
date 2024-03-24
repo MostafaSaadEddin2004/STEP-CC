@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 2));
+        AnimationController(vsync: this, duration: const Duration(seconds: 3));
     animation =
         Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
   }
@@ -34,10 +34,10 @@ class _SplashScreenState extends State<SplashScreen>
     animationController
       ..reset()
       ..forward();
-    await Future.delayed(const Duration(seconds: 2), () {
+    await Future.delayed(const Duration(seconds: 3), () {
       Get.off(() => const IntroPage(),
           transition: Transition.cupertino,
-          duration: const Duration(seconds: 2));
+          duration: const Duration(seconds: 3));
     });
   }
 
