@@ -5,6 +5,7 @@ import 'package:step_cc/components/background_container.dart';
 import 'package:step_cc/components/buttons/back_button.dart';
 import 'package:step_cc/components/buttons/next_button.dart';
 import 'package:step_cc/components/buttons/sign_up_type_button.dart';
+import 'package:step_cc/screens/auth/cc_signup_screen.dart';
 import 'package:step_cc/screens/auth/vip_cc_signup_screen.dart';
 
 class SignUpTypeScreen extends StatefulWidget {
@@ -42,7 +43,7 @@ class _SignUpTypeScreenState extends State<SignUpTypeScreen> {
             height: 32,
           ),
           Text(
-            'Sign up type',
+            'Select sign up type',
             style: Theme.of(context).textTheme.labelLarge,
           ),
           SignUpTypeButton(
@@ -70,8 +71,14 @@ class _SignUpTypeScreenState extends State<SignUpTypeScreen> {
           ),
           NextButton(
             onPressed: () {
-              if(isVIP){
-                Get.off(()=> const VIPCCSignUpScreen(),);
+              if (isVIP) {
+                Get.to(() => const VIPCCSignUpScreen(),
+                    duration: const Duration(seconds: 1),
+                    transition: Transition.fadeIn);
+              } else {
+                Get.to(() => const CCSignUpScreen(),
+                    duration: const Duration(seconds: 2),
+                    transition: Transition.fadeIn);
               }
             },
           ),

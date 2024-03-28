@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:step_cc/screens/auth/cc_login_screen.dart';
 import 'package:step_cc/screens/auth/cc_signup_screen.dart';
 import 'package:step_cc/screens/auth/sign_up_type_screen.dart';
@@ -31,14 +32,13 @@ abstract class AppRoute {
           builder: (context) => const CCLoginScreen(),
         );
       case VIPCCSignUpScreen.id:
-        return MaterialPageRoute(
-          builder: (context) => const VIPCCSignUpScreen(),
-        );
+        return PageTransition(
+            child: const VIPCCSignUpScreen(), type: PageTransitionType.size);
       case VIPCCLoginScreen.id:
         return MaterialPageRoute(
           builder: (context) => const VIPCCLoginScreen(),
         );
-        default: 
+      default:
         return MaterialPageRoute(
           builder: (context) => const SplashScreen(),
         );

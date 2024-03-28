@@ -85,6 +85,21 @@ abstract class AppTheme {
               color: black,
               fontWeight: FontWeight.normal,
             ),
+            headlineLarge: GoogleFonts.literata(
+              fontSize: 16,
+              color: blue,
+              fontWeight: FontWeight.normal,
+            ),
+            headlineMedium: GoogleFonts.literata(
+              fontSize: 16,
+              color: white.withOpacity(0.5),
+              fontWeight: FontWeight.normal,
+            ),
+            headlineSmall: GoogleFonts.literata(
+              fontSize: 12,
+              color: white.withOpacity(0.5),
+              fontWeight: FontWeight.normal,
+            ),
           ));
 
   static ThemeData lightTheme(BuildContext context) =>
@@ -162,11 +177,28 @@ abstract class AppTheme {
               color: black,
               fontWeight: FontWeight.normal,
             ),
+            headlineLarge: GoogleFonts.literata(
+              fontSize: 16,
+              color: blue,
+              fontWeight: FontWeight.normal,
+            ),
+            headlineMedium: GoogleFonts.literata(
+              fontSize: 16,
+              color: black.withOpacity(0.5),
+              fontWeight: FontWeight.normal,
+            ),
+            headlineSmall: GoogleFonts.literata(
+              fontSize: 12,
+              color: black.withOpacity(0.5),
+              fontWeight: FontWeight.normal,
+            ),
           ));
-  
+
   static Future<ThemeMode> getThemeMode() async {
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    final themeMode = sharedPreferences.getString('theme') ?? ThemeMode.system.name;
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    final themeMode =
+        sharedPreferences.getString('theme') ?? ThemeMode.system.name;
     switch (themeMode) {
       case 'dark':
         return ThemeMode.dark;
@@ -178,7 +210,8 @@ abstract class AppTheme {
   }
 
   static Future<void> setThemeMode(ThemeMode mode) async {
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
     await sharedPreferences.setString('theme', mode.name);
   }
 }

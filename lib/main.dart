@@ -21,47 +21,44 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => ThemeCubit(),
-        ),
-        BlocProvider(
-          create: (context) => LocalizationCubit(),
-        ),
-      ],
-      child: BlocBuilder(
-          bloc: ThemeCubit(),
-          builder: (context, themeState) {
-            return BlocBuilder(
-              bloc: LocalizationCubit(),
-              builder: (context, localeState) {
-                if (themeState is ThemeFetched) {
-                  if (localeState is LocalizationFetched) {
-                    return GetMaterialApp(
-                      debugShowCheckedModeBanner: false,
-                      localizationsDelegates: const [
-                        AppLocalizations.delegate,
-                        GlobalMaterialLocalizations.delegate,
-                        GlobalWidgetsLocalizations.delegate,
-                        GlobalCupertinoLocalizations.delegate,
-                      ],
-                      supportedLocales: const [
-                        Locale('en'), // English
-                        Locale('ar'), // Spanish
-                      ],
-                      locale: localeState.locale,
-                      theme: AppTheme.lightTheme(context),
-                      darkTheme: AppTheme.darkTheme(context),
-                      themeMode: themeState.themeMode,
-                      initialRoute: SplashScreen.id,
-                      onGenerateRoute: AppRoute.onGenerateRoute,
-                    );
-                  }
-                }
-                return const SizedBox();
-              },
-            );
-          }),
-    );
+        providers: [
+          BlocProvider(
+            create: (context) => ThemeCubit(),
+          ),
+          BlocProvider(
+            create: (context) => LocalizationCubit(),
+          ),
+        ],
+        child: Builder(
+          builder: (context) {
+            final themeState =
+                BlocProvider.of<ThemeCubit>(context, listen: true).state;
+            final localeState =
+                BlocProvider.of<LocalizationCubit>(context, listen: true).state;
+            if (themeState is ThemeFetched &&
+                localeState is LocalizationFetched) {
+              return GetMaterialApp(
+                debugShowCheckedModeBanner: false,
+                localizationsDelegates: const [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: const [
+                  Locale('en'), // English
+                  Locale('ar'), // Spanish
+                ],
+                locale: localeState.locale,
+                theme: AppTheme.lightTheme(context),
+                darkTheme: AppTheme.darkTheme(context),
+                themeMode: themeState.themeMode,
+                home: const SplashScreen(),
+                onGenerateRoute: AppRoute.onGenerateRoute,
+              );
+            }
+            return const SizedBox();
+          },
+        ));
   }
 }

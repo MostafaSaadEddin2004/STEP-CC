@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:step_cc/models/language_model.dart';
 
-abstract class AppLocaization {
+abstract class AppLocalization {
   static List<LanguageModel> languages = [
     LanguageModel(languageCode: 'eng', languageName: 'English'),
     LanguageModel(languageCode: 'ar', languageName: 'Arabic'),

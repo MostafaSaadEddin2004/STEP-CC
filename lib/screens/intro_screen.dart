@@ -87,8 +87,8 @@ class _IntroScreenState extends State<IntroScreen> {
                 onPressed: () {
                   if (lastIndex) {
                     Get.to(() => const SignUpTypeScreen(),
-                        duration: const Duration(seconds: 2),
-                        transition: Transition.circularReveal);
+                        duration: const Duration(seconds: 1),
+                        transition: Transition.cupertino);
                   } else {
                     _pageViewConterol.nextPage(
                         duration: const Duration(seconds: 1),
