@@ -10,6 +10,7 @@ import 'package:step_cc/components/buttons/log_in_button.dart';
 import 'package:step_cc/components/buttons/register_icon_button.dart';
 import 'package:step_cc/components/text%20fields/phone_text_field.dart';
 import 'package:step_cc/components/text%20fields/text_field.dart';
+import 'package:step_cc/screens/auth/vip_cc_login_screen.dart';
 
 class VIPCCSignUpScreen extends StatefulWidget {
   const VIPCCSignUpScreen({super.key});
@@ -177,7 +178,11 @@ class _VIPCCSignUpScreenState extends State<VIPCCSignUpScreen> {
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.off(() => const VIPCCLoginScreen(),
+                                  duration: const Duration(seconds: 2),
+                                  transition: Transition.circularReveal);
+                            },
                             child: Text(
                               'Log in',
                               style: Theme.of(context).textTheme.headlineLarge,
