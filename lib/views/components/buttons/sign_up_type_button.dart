@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:step_cc/utilities/check_locale.dart';
+import 'package:step_cc/controller/utilities/check_locale.dart';
 
 class SignUpTypeButton extends StatelessWidget {
   const SignUpTypeButton({
@@ -26,7 +26,7 @@ class SignUpTypeButton extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: isVIP == true
-              ? Theme.of(context).colorScheme.secondary.withOpacity(1)
+              ? Theme.of(context).colorScheme.secondary.withOpacity(0.8)
               : Theme.of(context).colorScheme.secondary.withOpacity(0.2),
           borderRadius: BorderRadius.circular(16),
         ),

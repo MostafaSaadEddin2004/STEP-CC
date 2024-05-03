@@ -77,10 +77,11 @@ class PhoneTextField extends StatelessWidget {
             Theme.of(context).colorScheme.secondary.withOpacity(0.8),
         suffixIconColor:
             Theme.of(context).colorScheme.secondary.withOpacity(0.8),
-        floatingLabelStyle: Theme.of(context).textTheme.displayMedium,
+        floatingLabelStyle: Theme.of(context).textTheme.headlineMedium,
         hintText: hint,
+        hintStyle: Theme.of(context).textTheme.headlineSmall,
         label: Text(labelText ?? ''),
-        labelStyle: Theme.of(context).textTheme.displayMedium,
+        labelStyle: Theme.of(context).textTheme.headlineMedium,
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(
@@ -91,7 +92,7 @@ class PhoneTextField extends StatelessWidget {
             borderSide: BorderSide(
                 color:
                     Theme.of(context).colorScheme.secondary.withOpacity(0.8))),
-        contentPadding: EdgeInsets.all(12),
+        contentPadding: const EdgeInsets.all(12),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(

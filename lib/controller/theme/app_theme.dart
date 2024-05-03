@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:step_cc/constants/colors.dart';
+import 'package:step_cc/controller/constants/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AppTheme {

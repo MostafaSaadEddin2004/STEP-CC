@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:step_cc/components/background_container.dart';
-import 'package:step_cc/screens/intro_screen.dart';
+import 'package:step_cc/views/components/background_container.dart';
+import 'package:step_cc/views/screens/intro_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -35,9 +34,10 @@ class _SplashScreenState extends State<SplashScreen>
       ..reset()
       ..forward();
     await Future.delayed(const Duration(seconds: 3), () {
-      Get.off(() => const IntroScreen(),
-          transition: Transition.cupertino,
-          duration: const Duration(seconds: 3));
+      // Get.off(() => const IntroScreen(),
+      //     transition: Transition.cupertino,
+      //     duration: const Duration(seconds: 3));
+      Navigator.of(context).popAndPushNamed(IntroScreen.id);
     });
   }
 

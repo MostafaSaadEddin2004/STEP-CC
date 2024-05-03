@@ -1,38 +1,30 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:step_cc/components/background_container.dart';
-import 'package:step_cc/components/buttons/back_button.dart';
-import 'package:step_cc/components/buttons/log_in_button.dart';
-import 'package:step_cc/components/buttons/register_icon_button.dart';
-import 'package:step_cc/components/text%20fields/phone_text_field.dart';
-import 'package:step_cc/components/text%20fields/text_field.dart';
-import 'package:step_cc/screens/auth/vip_cc_login_screen.dart';
+import 'package:step_cc/views/components/background_container.dart';
+import 'package:step_cc/views/components/buttons/back_button.dart';
+import 'package:step_cc/views/components/buttons/log_in_button.dart';
+import 'package:step_cc/views/components/buttons/register_icon_button.dart';
+import 'package:step_cc/views/components/text%20fields/text_field.dart';
 
-class VIPCCSignUpScreen extends StatefulWidget {
-  const VIPCCSignUpScreen({super.key});
-  static const String id = '/VIPCCSignUpScreen';
+class VIPCCLoginScreen extends StatefulWidget {
+  const VIPCCLoginScreen({super.key});
+  static const String id = '/VIPCCLoginScreen';
 
   @override
-  State<VIPCCSignUpScreen> createState() => _VIPCCSignUpScreenState();
+  State<VIPCCLoginScreen> createState() => _VIPCCLoginScreenState();
 }
 
-class _VIPCCSignUpScreenState extends State<VIPCCSignUpScreen> {
-  final TextEditingController _userNameController = TextEditingController();
+class _VIPCCLoginScreenState extends State<VIPCCLoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
   final GlobalKey<FormState> _formState = GlobalKey();
   @override
   void dispose() {
     super.dispose();
-    _userNameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
-    _phoneController.dispose();
   }
 
   @override
@@ -81,21 +73,6 @@ class _VIPCCSignUpScreenState extends State<VIPCCSignUpScreen> {
                   children: [
                     CustomTextField(
                       obscure: false,
-                      controller: _userNameController,
-                      validator: (text) {
-                        if (text!.isEmpty) {
-                          return 'this filed is required';
-                        }
-                        return null;
-                      },
-                      maxLine: 1,
-                      prefix: const Icon(Icons.person),
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    CustomTextField(
-                      obscure: false,
                       controller: _emailController,
                       validator: (text) {
                         if (text!.isEmpty) {
@@ -124,13 +101,7 @@ class _VIPCCSignUpScreenState extends State<VIPCCSignUpScreen> {
                     const SizedBox(
                       height: 16,
                     ),
-                    PhoneTextField(
-                        controller: _phoneController,
-                        keyboardType: TextInputType.phone),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    LogInButton(
+                    LogInTextButton(
                       onTap: () {},
                       buttonText: 'Sign up',
                     )
@@ -178,11 +149,7 @@ class _VIPCCSignUpScreenState extends State<VIPCCSignUpScreen> {
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         TextButton(
-                            onPressed: () {
-                              Get.off(() => const VIPCCLoginScreen(),
-                                  duration: const Duration(seconds: 2),
-                                  transition: Transition.circularReveal);
-                            },
+                            onPressed: () {},
                             child: Text(
                               'Log in',
                               style: Theme.of(context).textTheme.headlineLarge,

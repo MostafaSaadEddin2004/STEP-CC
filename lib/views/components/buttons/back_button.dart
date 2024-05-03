@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:step_cc/utilities/check_locale.dart';
+import 'package:step_cc/controller/utilities/check_locale.dart';
 
 class CustomBackButton extends StatelessWidget {
   const CustomBackButton({

@@ -12,7 +12,7 @@ class IntroContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 176),
+      padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 64),
       child: Column(
         children: [
           Row(

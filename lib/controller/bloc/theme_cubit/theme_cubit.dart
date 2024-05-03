@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:step_cc/theme/app_theme.dart';
+import 'package:step_cc/controller/theme/app_theme.dart';
 
 part 'theme_state.dart';
 

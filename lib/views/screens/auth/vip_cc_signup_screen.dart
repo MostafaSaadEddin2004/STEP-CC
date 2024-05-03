@@ -1,24 +1,27 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:step_cc/components/background_container.dart';
-import 'package:step_cc/components/buttons/back_button.dart';
-import 'package:step_cc/components/buttons/log_in_button.dart';
-import 'package:step_cc/components/buttons/register_icon_button.dart';
-import 'package:step_cc/components/text%20fields/phone_text_field.dart';
-import 'package:step_cc/components/text%20fields/text_field.dart';
+import 'package:step_cc/views/components/background_container.dart';
+import 'package:step_cc/views/components/buttons/back_button.dart';
+import 'package:step_cc/views/components/buttons/log_in_button.dart';
+import 'package:step_cc/views/components/buttons/register_icon_button.dart';
+import 'package:step_cc/views/components/text%20fields/phone_text_field.dart';
+import 'package:step_cc/views/components/text%20fields/text_field.dart';
+import 'package:step_cc/views/screens/auth/vip_cc_login_screen.dart';
 
-class CCSignUpScreen extends StatefulWidget {
-  const CCSignUpScreen({super.key});
-  static const String id='/CCSignUpScreen';
+class VIPCCSignUpScreen extends StatefulWidget {
+  const VIPCCSignUpScreen({super.key});
+  static const String id = '/VIPCCSignUpScreen';
 
   @override
-  State<CCSignUpScreen> createState() => _CCSignUpScreenState();
+  State<VIPCCSignUpScreen> createState() => _VIPCCSignUpScreenState();
 }
 
-class _CCSignUpScreenState extends State<CCSignUpScreen> {
- final TextEditingController _userNameController = TextEditingController();
+class _VIPCCSignUpScreenState extends State<VIPCCSignUpScreen> {
+  final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
@@ -87,6 +90,8 @@ class _CCSignUpScreenState extends State<CCSignUpScreen> {
                       },
                       maxLine: 1,
                       prefix: const Icon(Icons.person),
+                      hint: 'Enter username',
+                      labelText: 'Username',
                     ),
                     const SizedBox(
                       height: 16,
@@ -102,6 +107,7 @@ class _CCSignUpScreenState extends State<CCSignUpScreen> {
                       },
                       maxLine: 1,
                       prefix: const Icon(Icons.email),
+                      hint: 'Enter email',
                     ),
                     const SizedBox(
                       height: 16,
@@ -117,18 +123,24 @@ class _CCSignUpScreenState extends State<CCSignUpScreen> {
                       },
                       maxLine: 1,
                       prefix: const Icon(Icons.lock),
+                      hint: 'Enter password',
                     ),
                     const SizedBox(
                       height: 16,
                     ),
                     PhoneTextField(
-                        controller: _phoneController,
-                        keyboardType: TextInputType.phone),
+                      controller: _phoneController,
+                      keyboardType: TextInputType.phone,
+                      hint: 'Enter phone',
+                      labelText: 'Phone',
+                    ),
                     const SizedBox(
                       height: 16,
                     ),
-                    LogInButton(
-                      onTap: () {},
+                    LogInTextButton(
+                      onTap: () {
+                        Get.to(() => const VIPCCLoginScreen());
+                      },
                       buttonText: 'Sign up',
                     )
                   ],
@@ -175,7 +187,11 @@ class _CCSignUpScreenState extends State<CCSignUpScreen> {
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.off(() => const VIPCCLoginScreen(),
+                                  duration: const Duration(seconds: 2),
+                                  transition: Transition.circularReveal);
+                            },
                             child: Text(
                               'Log in',
                               style: Theme.of(context).textTheme.headlineLarge,

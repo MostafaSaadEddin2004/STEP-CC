@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:step_cc/components/background_container.dart';
-import 'package:step_cc/components/buttons/back_button.dart';
-import 'package:step_cc/components/buttons/next_button.dart';
-import 'package:step_cc/components/buttons/sign_up_type_button.dart';
-import 'package:step_cc/screens/auth/cc_signup_screen.dart';
-import 'package:step_cc/screens/auth/vip_cc_signup_screen.dart';
+import 'package:step_cc/views/components/background_container.dart';
+import 'package:step_cc/views/components/buttons/back_button.dart';
+import 'package:step_cc/views/components/buttons/next_button.dart';
+import 'package:step_cc/views/components/buttons/sign_up_type_button.dart';
+import 'package:step_cc/views/screens/auth/cc_signup_screen.dart';
+import 'package:step_cc/views/screens/auth/vip_cc_signup_screen.dart';
+import 'package:step_cc/controller/utilities/check_locale.dart';
 
 class SignUpTypeScreen extends StatefulWidget {
   const SignUpTypeScreen({super.key});
@@ -21,11 +22,10 @@ class _SignUpTypeScreenState extends State<SignUpTypeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BackgroundContainer(
-          child: SafeArea(
-              child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
+      body: SingleChildScrollView(
+        child: BackgroundContainer(
+            child: SafeArea(
+                child: Column(children: [
           Row(
             children: [
               CustomBackButton(
@@ -70,6 +70,10 @@ class _SignUpTypeScreenState extends State<SignUpTypeScreen> {
             flex: 1,
           ),
           NextButton(
+            padding: EdgeInsets.only(
+                right: Direction.isLTR(context) ? 48 : 0,
+                left: Direction.isLTR(context) ? 0 : 48,
+                bottom: 48),
             onPressed: () {
               if (isVIP) {
                 Get.to(() => const VIPCCSignUpScreen(),
@@ -82,8 +86,8 @@ class _SignUpTypeScreenState extends State<SignUpTypeScreen> {
               }
             },
           ),
-        ],
-      ))),
+        ]))),
+      ),
     );
   }
 }

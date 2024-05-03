@@ -2,29 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:step_cc/components/background_container.dart';
-import 'package:step_cc/components/buttons/back_button.dart';
-import 'package:step_cc/components/buttons/log_in_button.dart';
-import 'package:step_cc/components/buttons/register_icon_button.dart';
-import 'package:step_cc/components/text%20fields/text_field.dart';
+import 'package:step_cc/views/components/background_container.dart';
+import 'package:step_cc/views/components/buttons/back_button.dart';
+import 'package:step_cc/views/components/buttons/log_in_button.dart';
+import 'package:step_cc/views/components/buttons/register_icon_button.dart';
+import 'package:step_cc/views/components/text%20fields/phone_text_field.dart';
+import 'package:step_cc/views/components/text%20fields/text_field.dart';
 
-class VIPCCLoginScreen extends StatefulWidget {
-  const VIPCCLoginScreen({super.key});
-  static const String id = '/VIPCCLoginScreen';
+class CCSignUpScreen extends StatefulWidget {
+  const CCSignUpScreen({super.key});
+  static const String id = '/CCSignUpScreen';
 
   @override
-  State<VIPCCLoginScreen> createState() => _VIPCCLoginScreenState();
+  State<CCSignUpScreen> createState() => _CCSignUpScreenState();
 }
 
-class _VIPCCLoginScreenState extends State<VIPCCLoginScreen> {
+class _CCSignUpScreenState extends State<CCSignUpScreen> {
+  final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   final GlobalKey<FormState> _formState = GlobalKey();
   @override
   void dispose() {
     super.dispose();
+    _userNameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _phoneController.dispose();
   }
 
   @override
@@ -73,6 +78,22 @@ class _VIPCCLoginScreenState extends State<VIPCCLoginScreen> {
                   children: [
                     CustomTextField(
                       obscure: false,
+                      controller: _userNameController,
+                      validator: (text) {
+                        if (text!.isEmpty) {
+                          return 'this filed is required';
+                        }
+                        return null;
+                      },
+                      maxLine: 1,
+                      prefix: const Icon(Icons.person),
+                      hint: 'Ebter username',
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    CustomTextField(
+                      obscure: false,
                       controller: _emailController,
                       validator: (text) {
                         if (text!.isEmpty) {
@@ -82,6 +103,7 @@ class _VIPCCLoginScreenState extends State<VIPCCLoginScreen> {
                       },
                       maxLine: 1,
                       prefix: const Icon(Icons.email),
+                      hint: 'Enter email',
                     ),
                     const SizedBox(
                       height: 16,
@@ -97,11 +119,21 @@ class _VIPCCLoginScreenState extends State<VIPCCLoginScreen> {
                       },
                       maxLine: 1,
                       prefix: const Icon(Icons.lock),
+                      hint: 'Enter password',
                     ),
                     const SizedBox(
                       height: 16,
                     ),
-                    LogInButton(
+                    PhoneTextField(
+                      controller: _phoneController,
+                      keyboardType: TextInputType.phone,
+                      hint: 'Enter phone',
+                      labelText: 'Phone',
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    LogInTextButton(
                       onTap: () {},
                       buttonText: 'Sign up',
                     )

@@ -42,9 +42,9 @@ class CustomTextField extends StatelessWidget {
             Theme.of(context).colorScheme.secondary.withOpacity(0.8),
         suffixIconColor:
             Theme.of(context).colorScheme.secondary.withOpacity(0.8),
-        floatingLabelStyle: Theme.of(context).textTheme.headlineSmall,
+        floatingLabelStyle: Theme.of(context).textTheme.headlineMedium,
         hintText: hint,
-        hintStyle: Theme.of(context).textTheme.headlineMedium,
+        hintStyle: Theme.of(context).textTheme.headlineSmall,
         label: Text(labelText ?? ''),
         labelStyle: Theme.of(context).textTheme.headlineMedium,
         border: OutlineInputBorder(
@@ -61,6 +61,7 @@ class CustomTextField extends StatelessWidget {
         suffixIcon: suffix,
         contentPadding: const EdgeInsets.all(12),
         focusedBorder: OutlineInputBorder(
+          gapPadding: 4,
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
               color: Theme.of(context).colorScheme.secondary.withOpacity(0.8)),

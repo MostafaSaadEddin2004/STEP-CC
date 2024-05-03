@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:step_cc/bloc/localization_cubit/localization_cubit.dart';
-import 'package:step_cc/bloc/theme_cubit/theme_cubit.dart';
+import 'package:step_cc/controller/bloc/localization_cubit/localization_cubit.dart';
+import 'package:step_cc/controller/bloc/theme_cubit/theme_cubit.dart';
+import 'package:step_cc/controller/theme/app_theme.dart';
 import 'package:step_cc/models/bloc_observer.dart';
 import 'package:step_cc/models/route_model.dart';
-import 'package:step_cc/screens/splash_screen.dart';
-import 'package:step_cc/theme/app_theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:step_cc/views/screens/splash_screen.dart';
 
 void main() {
   runApp(const Main());
@@ -32,9 +32,9 @@ class Main extends StatelessWidget {
         child: Builder(
           builder: (context) {
             final themeState =
-                BlocProvider.of<ThemeCubit>(context, listen: true).state;
+                context.watch<ThemeCubit>().state;
             final localeState =
-                BlocProvider.of<LocalizationCubit>(context, listen: true).state;
+                context.watch<LocalizationCubit>().state;
             if (themeState is ThemeFetched &&
                 localeState is LocalizationFetched) {
               return GetMaterialApp(
@@ -53,7 +53,7 @@ class Main extends StatelessWidget {
                 theme: AppTheme.lightTheme(context),
                 darkTheme: AppTheme.darkTheme(context),
                 themeMode: themeState.themeMode,
-                home: const SplashScreen(),
+                initialRoute: SplashScreen.id,
                 onGenerateRoute: AppRoute.onGenerateRoute,
               );
             }
